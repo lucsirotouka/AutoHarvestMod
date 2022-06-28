@@ -187,9 +187,9 @@ public class TickListener {
 
     private void plantTick() {
         ItemStack handItem = tryFillItemInHand();
-        //Toto: 透過PlantBlock檢查
+        // Toto: 透過PlantBlock檢查
         if (handItem == null)
-            return;            
+            return;
         if (!CropManager.isSeed(handItem)) {
             if (CropManager.isCocoa(handItem)) {
                 plantCocoaTick(handItem);
@@ -202,19 +202,19 @@ public class TickListener {
         int Y = (int) Math.floor(p.getY() + 0.2D);// the "leg block" , in case in soul sand
         int Z = (int) Math.floor(p.getZ());
 
-        
         for (int deltaX = -configure.effect_radius.value; deltaX <= configure.effect_radius.value; ++deltaX)
             for (int deltaZ = -configure.effect_radius.value; deltaZ <= configure.effect_radius.value; ++deltaZ) {
                 BlockPos pos = new BlockPos(X + deltaX, Y, Z + deltaZ);
-                if (w.getBlockState(pos).getBlock() != Blocks.AIR)
-                    continue;
-                BlockPos downPos = pos.down();
-                BlockHitResult blockHitResult = new BlockHitResult(new Vec3d(X + deltaX + 0.5, Y, Z + deltaZ + 0.5),
-                        Direction.UP, downPos, false);
-                w.getBlockState(pos.offset(Direction.DOWN)).canPlaceAt(w, pos);
+                if (CropManager.canPaint(w.getBlockState(pos), handItem) == false)
+                continue;
                 if (CropManager.canPlantOn(handItem.getItem(), w, pos)) {
+                    if (w.getBlockState(pos.down()).getBlock() == Blocks.KELP)
+                        continue;
                     lastUsedItem = handItem.copy();
                     assert MinecraftClient.getInstance().interactionManager != null;
+                    BlockPos downPos = pos.down();
+                    BlockHitResult blockHitResult = new BlockHitResult(new Vec3d(X + deltaX + 0.5, Y, Z + deltaZ + 0.5),
+                            Direction.UP, downPos, false);
                     MinecraftClient.getInstance().interactionManager.interactBlock(MinecraftClient.getInstance().player,
                             MinecraftClient.getInstance().world, Hand.MAIN_HAND, blockHitResult);
                     minusOneInHand();
@@ -341,7 +341,7 @@ public class TickListener {
          * bucket. The interaction is resolved on the server - if the client doesn't
          * match, the next animal to be
          * interacted with gets scooped up rather than fed.
-         */        
+         */
         Collection<Class<? extends AnimalEntity>> needFeedAnimalList = CropManager.FEED_MAP.get(handItem.getItem());
         for (Class<? extends AnimalEntity> type : needFeedAnimalList) {
             for (AnimalEntity e : p.getEntityWorld().getEntitiesByClass(

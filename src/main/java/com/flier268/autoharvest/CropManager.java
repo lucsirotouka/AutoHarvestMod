@@ -23,6 +23,7 @@ public class CropManager {
     public static final Block BERRY = Blocks.SWEET_BERRY_BUSH;
     public static final Block BAMBOO = Blocks.BAMBOO;
     public static final Block KELP = Blocks.KELP;
+    public static final Block KELP_PLANT = Blocks.KELP_PLANT;
 
     public static final Set<Block> WEED_BLOCKS = new HashSet<>() {
         {
@@ -74,7 +75,7 @@ public class CropManager {
     public static final BiMap<Block, Item> SEED_MAP = HashBiMap.create(
             new HashMap<>() {
                 {
-                    put(Blocks.SWEET_BERRY_BUSH,Items.SWEET_BERRIES);
+                    put(Blocks.SWEET_BERRY_BUSH, Items.SWEET_BERRIES);
                     put(Blocks.WHEAT, Items.WHEAT_SEEDS);
                     put(Blocks.POTATOES, Items.POTATO);
                     put(Blocks.CARROTS, Items.CARROT);
@@ -88,6 +89,7 @@ public class CropManager {
                     // 1.16
                     put(Blocks.CRIMSON_FUNGUS, Items.CRIMSON_FUNGUS);
                     put(Blocks.WARPED_FUNGUS, Items.WARPED_FUNGUS);
+                    put(Blocks.KELP, Items.KELP);
                 }
             });
 
@@ -176,12 +178,12 @@ public class CropManager {
             if (b instanceof NetherWartBlock)
                 return stat.get(NetherWartBlock.AGE) >= 3;
             return false;
-        } else if (b == REED_BLOCK || b == BAMBOO || b == KELP) {
+        } else if (b == REED_BLOCK || b == BAMBOO || (b == KELP || b == KELP_PLANT)) {
             Block blockDown = w.getBlockState(pos.down()).getBlock();
             Block blockDown2 = w.getBlockState(pos.down(2)).getBlock();
             return (blockDown == REED_BLOCK && blockDown2 != REED_BLOCK) ||
                     (blockDown == BAMBOO && blockDown2 != BAMBOO) ||
-                    (blockDown == KELP && blockDown2 != KELP);
+                    (blockDown == KELP_PLANT && blockDown2 != KELP_PLANT);
         }
         return false;
     }
@@ -199,6 +201,14 @@ public class CropManager {
     public static boolean isCocoa(ItemStack stack) {
         return (!stack.isEmpty()
                 && stack.getItem() == Items.COCOA_BEANS);
+    }
+
+    public static boolean canPaint(BlockState s, ItemStack stack) {
+        if (stack.getItem() == Items.KELP) {
+            // is water and the water is stationary
+            return s.getBlock() == Blocks.WATER && s.getEntries().values().toArray()[0].equals(0);
+        }
+        return s.getBlock() == Blocks.AIR;
     }
 
     public static boolean isJungleLog(BlockState s) {
