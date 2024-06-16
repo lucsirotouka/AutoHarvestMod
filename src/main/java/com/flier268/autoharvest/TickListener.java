@@ -150,8 +150,7 @@ public class TickListener {
                 for (int idx = 0; idx < 36; ++idx) {
                     ItemStack s = inv.get(idx);
                     if (s.getItem() == lastUsedItem.getItem() &&
-                            s.getDamage() == lastUsedItem.getDamage() &&
-                            !s.hasNbt()) {
+                            s.getDamage() == lastUsedItem.getDamage()) {
                         AutoHarvest.instance.taskManager.Add_MoveItem(idx, p.getInventory().selectedSlot);
                         return s;
                     }
