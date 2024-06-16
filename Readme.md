@@ -1,11 +1,11 @@
-### Automatic Harvest Mod for Minecraft 1.20.4
+### Automatic Harvest Mod for Minecraft 1.20.1
 This mod give you the easiest way to harvest crops.
 You just need to walk around, and all the mature crops will be harvested and re-planted.
 
 *\*Client Only\**
 
 ### Requirements
-1. Minecraft 1.20.4
+1. Minecraft 1.20.1
 2. [Fabric](https://fabricmc.net/wiki/install)
 3. [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api)
 
@@ -24,47 +24,21 @@ Available modes are:
 Supported Crops:
 
 - Wheat
-- Sugar cane
-- Pumpkin (plant only)
-- Nether wart
-- Watermelon (plant only)
-- Potato
 - Carrot
-- Beetroot
-- Chorus plant
+- Potato
+- Nether Wart
+- Pumpkin (Plant Only)
+- Melon (Plant Only)
+- Sapling
 - Kelp
 - Bamboo
-- Sweet berry bush
-- Crismon fungus, warped fungus
-- Pitcher, torchflower
-- Mushrooms (small ones only)
-- All kinds of grass
-- All kinds of flowers
-
-Supported animals to feed:
-
-- Horse
-- Cow, mooshroom
-- Sheep (also sheering)
-- Pig
-- Chicken
-- Wolf
-- Rabbit
-- Llama
-- Turtle
-- Panda
-- Fox
-- Cat (not ocelot)
-- Bee
-- Strider
-- Hoglin
-- Goat
-- Frog
-- Camel
-- Sniffer
+- Berry
+- Mushroom (Small ones Only)
+- All kind of grass
+- All kind of flowers
 
 ### License
 This mod is publish under GPLv3.
 You can find details in the `LICENSE` file.
 
-This version is cloned from [flier268](https://github.com/flier268/AutoHarvestMod) and updated for compatibility with Minecraft 1.20.4.
+This version is cloned from [flier268](https://github.com/flier268/AutoHarvestMod) and updated for compatibility with Minecraft 1.20.1.
