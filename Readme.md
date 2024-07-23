@@ -1,11 +1,11 @@
-### Automatic Harvest Mod for Minecraft 1.20.4
+### Automatic Harvest Mod for Minecraft 1.21
 This mod give you the easiest way to harvest crops.
 You just need to walk around, and all the mature crops will be harvested and re-planted.
 
 *\*Client Only\**
 
 ### Requirements
-1. Minecraft 1.20.4
+1. Minecraft 1.21
 2. [Fabric](https://fabricmc.net/wiki/install)
 3. [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api)
 
